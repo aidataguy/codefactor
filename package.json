@@ -1,0 +1,35 @@
+{
+  "name": "codefactor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidataguy/codefactor.git"
+  },
+  "author": "himanshu Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aidataguy/codefactor/issues"
+  },
+  "homepage": "https://github.com/aidataguy/codefactor#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "axios": "^0.19.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2"
+  }
+}
