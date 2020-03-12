@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axiosInstance from "../axiosApi";
 
 class Signup extends Component{
     constructor(props){
@@ -6,7 +7,8 @@ class Signup extends Component{
         this.state = {
             username: "",
             password: "",
-            email:""
+            email:"",
+            errors:{}
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -42,14 +44,17 @@ class Signup extends Component{
                     <label>
                         Username:
                         <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
+                        { this.state.errors.username ? this.state.errors.username : null}
                     </label>
                     <label>
                         Email:
                         <input name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
+                        { this.state.errors.email ? this.state.errors.email : null}
                     </label>
                     <label>
                         Password:
                         <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
+                        { this.state.errors.password ? this.state.errors.password : null}
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
@@ -57,4 +62,5 @@ class Signup extends Component{
         )
     }
 }
+
 export default Signup;
