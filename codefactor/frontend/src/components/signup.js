@@ -17,9 +17,21 @@ class Signup extends Component{
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleSubmit(event) {
-        alert('A username and password was submitted: ' + this.state.username + " " + this.state.password + " " + this.state.email);
+    async handleSubmit(event) {
         event.preventDefault();
+        try {
+            const response = await axiosInstance.post('/user/create/', {
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+            });
+            return response;
+        } catch (error) {
+            console.log(error.stack);
+            this.setState({
+                errors:error.response.data
+            });
+        }
     }
 
     render() {

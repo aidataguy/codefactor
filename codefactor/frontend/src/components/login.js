@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axiosInstance from  "../axiosApi";
+import axiosInstance from "../axiosApi";
 
 class Login extends Component {
     constructor(props) {
@@ -14,16 +14,17 @@ class Login extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         try {
-            const response = axiosInstance.post('/token/obtain/', {
+            const data = await axiosInstance.post('/token/obtain/', {
                 username: this.state.username,
                 password: this.state.password
             });
-            axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
-            localStorage.setItem('access_token', response.data.access);
-            localStorage.setItem('refresh_token', response.data.refresh);
+            console.log(" response is....." , data)
+            axiosInstance.defaults.headers['Authorization'] = "JWT " + data.access;
+            localStorage.setItem('access_token', data.data.access);
+            localStorage.setItem('refresh_token', data.data.refresh);
             return data;
         } catch (error) {
             throw error;
