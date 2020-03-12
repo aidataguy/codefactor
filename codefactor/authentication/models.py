@@ -7,11 +7,12 @@ from django.utils.text import slugify
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=50)
     avatar = models.FileField(upload_to="avatars")
-    slug_name = models.SlugField(max_length=5, unique=True)
+    slug_name = models.SlugField(max_length=50, allow_unicode=True)
     location = models.CharField(max_length=100, blank=True)
     about_me = models.TextField()
     status = models.BooleanField(default=True)
 
-    def save(self, *args, **kwargs):
-        self.slug_name = slugify(self.name)
-        super(CustomUser, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs): # new
+        if not self.slug_name:
+            self.slug_name = slugify(self.name)
+        return super().save(*args, **kwargs)

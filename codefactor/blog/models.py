@@ -6,18 +6,20 @@ from markdownx.models import MarkdownxField
 # Create your models here.
 
 class Blog(models.Model):
-    title = models.CharField(max_length=100, unique=True)
-    slug_title = models.SlugField(max_length=5, unique=True)
+    title = models.TextField(unique=True)
+    slug_title = models.SlugField()
     location = models.CharField(max_length=100, blank=True)
     status = models.BooleanField(default=True)
     author = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
     author_image = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, related_name="Avatar")
     content = MarkdownxField(editable=True, help_text=True)
     archived = models.BooleanField(default=False)
+
  
-    def save(self, *args, **kwargs):
-        self.slug_name = slugify(self.title)
-        super(Blog, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs): # new
+        if not self.slug_title:
+            self.slug_title = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 class Comments(models.Model):
     blog_title = models.ForeignKey(to=Blog, on_delete=models.CASCADE)

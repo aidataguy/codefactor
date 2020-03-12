@@ -8,6 +8,7 @@ class Signup extends Component{
             username: "",
             password: "",
             email:"",
+            slug_name: "",
             errors:{}
         };
 
@@ -25,8 +26,10 @@ class Signup extends Component{
             const response = await axiosInstance.post('/user/create/', {
                 username: this.state.username,
                 email: this.state.email,
-                password: this.state.password
+                password: this.state.password,
+                slug_name: this.state.slug_name
             });
+            console.log(response)
             return response;
         } catch (error) {
             console.log(error.stack);
@@ -55,6 +58,11 @@ class Signup extends Component{
                         Password:
                         <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
                         { this.state.errors.password ? this.state.errors.password : null}
+                    </label>
+                    <label>
+                        Slug:
+                        <input name="slug_name" type="hidden" value={this.state.username} onChange={this.handleChange}/>
+                        { this.state.errors.slug_name ? this.state.errors.slug_name : null}
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
