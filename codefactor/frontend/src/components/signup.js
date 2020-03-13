@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import axiosFileInstance from "../axiosApi";
 import axios from 'axios'
 class Signup extends Component {
     constructor(props) {
