@@ -42,8 +42,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),  # 
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),  #
 }
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
@@ -94,38 +94,37 @@ TEMPLATES = [
 WSGI_APPLICATION = 'codefactor.wsgi.application'
 
 
-
 DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'ENFORCE_SCHEMA': True,
-            'LOGGING': {
-                'version': 1,
-                'loggers': {
-                    'djongo': {
-                        'level': 'DEBUG',
-                        'propogate': False,
-                        'handlers': ['console']
-                    }
-                },
-                'handlers': {
-                    'console': {
-                        'class': 'logging.StreamHandler',
-                        'level': 'DEBUG'
-                    }
+    'default': {
+        'ENGINE': 'djongo',
+        'ENFORCE_SCHEMA': True,
+        'LOGGING': {
+            'version': 1,
+            'loggers': {
+                'djongo': {
+                    'level': 'DEBUG',
+                    'propogate': False,
+                    'handlers': ['console']
                 }
             },
-            'NAME': 'codefactordb',
-            'CLIENT': {
+            'handlers': {
+                'console': {
+                    'class': 'logging.StreamHandler',
+                    'level': 'DEBUG'
+                }
+            }
+        },
+        'NAME': 'codefactordb',
+        'CLIENT': {
                 'host': '127.0.0.1',
                 'port': 27017,
                 # 'username': 'admin',
                 # 'password': 'admin',
                 'authSource': 'codefactordb',
                 # 'authMechanism': 'SCRAM-SHA-1'
-            }
         }
     }
+}
 
 
 # Password validation
@@ -165,6 +164,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Custom Auth User Model

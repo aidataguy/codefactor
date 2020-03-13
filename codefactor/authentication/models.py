@@ -4,15 +4,10 @@ from django.utils.text import slugify
 
 # Create your models here.
 
+
 class CustomUser(AbstractUser):
-    name = models.CharField(max_length=50)
-    avatar = models.FileField(upload_to="avatars")
+    avatar = models.ImageField(upload_to="avatars", null=True, blank=True)
     slug_name = models.SlugField(max_length=50, allow_unicode=True)
     location = models.CharField(max_length=100, blank=True)
-    about_me = models.TextField()
+    about_me = models.TextField(blank=True)
     status = models.BooleanField(default=True)
-
-    def save(self, *args, **kwargs): # new
-        if not self.slug_name:
-            self.slug_name = slugify(self.name)
-        return super().save(*args, **kwargs)
