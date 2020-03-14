@@ -25,7 +25,7 @@ export default function Navbar() {
             <nav>
                 <Link className={"nav-link"} to={"/"}>Home</Link>
                 { loggedIn ?
-                    <Link onClick={handleLogout} to={"/logout"}>Logout</Link>
+                    <Link onClick={handleLogout} to={"/logout"}>Logout</Link>   
                     :
                     <p>You are LoggedIN!!</p>
                 }
