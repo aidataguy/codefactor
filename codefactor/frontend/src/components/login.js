@@ -5,11 +5,10 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {username: "", password: ""};
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
@@ -19,9 +18,8 @@ class Login extends Component {
         try {
             const data = await axiosInstance.post('/token/obtain/', {
                 username: this.state.username,
-                password: this.state.password
+                password: this.state.password,
             });
-            console.log(" response is....." , data)
             axiosInstance.defaults.headers['Authorization'] = "JWT " + data.access;
             localStorage.setItem('access_token', data.data.access);
             localStorage.setItem('refresh_token', data.data.refresh);

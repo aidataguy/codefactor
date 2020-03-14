@@ -32,6 +32,3 @@ class Comments(models.Model):
     comment_user_name = models.ForeignKey(
         to=CustomUser, on_delete=models.CASCADE)
     comment_text = MarkdownxField(max_length=None, editable=True)
-
-    def save(self):
-        Comments.save()

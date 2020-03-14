@@ -9,7 +9,6 @@ class Signup extends Component {
             email: "",
             slug_name: "",
             avatar: "",
-
             errors: {}
         };
 

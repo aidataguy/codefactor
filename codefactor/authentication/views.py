@@ -25,8 +25,7 @@ class CustomUserCreate(APIView):
         return Response(serializer.data)
 
     def post(self, request, format='json'):
-        import pdb
-        pdb.set_trace()
+
         serializer = CustomUserSerializer(
             data=request.data)
         if serializer.is_valid():

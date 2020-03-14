@@ -22,7 +22,7 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = ['title', 'slug_title', 'location', 'author', 'status',
-                  'author_image', 'content', 'main_image',  'thumbnail_image']
+                  'author_image', 'content', 'main_image']
 
     def create(self, validated_data):
         title = validated_data.pop("title", None)
